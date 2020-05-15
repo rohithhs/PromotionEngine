@@ -15,5 +15,4 @@ public class Promotion {
 		this.list = list;
 	}
 
-	
 }

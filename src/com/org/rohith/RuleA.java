@@ -3,12 +3,7 @@ package com.org.rohith;
 import java.util.List;
 
 public class RuleA implements Rules<SKU,SKU> {
-
-	@Override
-	public SKU process(SKU input) {
-		return null;
-	}
-
+	
 	@Override
 	public boolean matches(SKU input) {
 		return input.getName().equals("A");

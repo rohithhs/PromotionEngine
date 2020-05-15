@@ -6,11 +6,6 @@ public class RuleB implements Rules<SKU,SKU> {
 
 	
 	@Override
-	public SKU process(SKU input) {
-		return null;
-	}
-
-	@Override
 	public boolean matches(SKU input) {
 		return input.getName().equals("B");
 	}
@@ -36,7 +31,7 @@ public class RuleB implements Rules<SKU,SKU> {
 				{
 					offerPriceForB += count *input.getPrice();
 				}
-				offerPrice.setOfferPriceA(offerPriceForB);
+				offerPrice.setOfferPriceB(offerPriceForB);
 			}
 		}
 		return offerPrice;

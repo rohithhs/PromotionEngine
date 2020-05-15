@@ -3,29 +3,31 @@ package com.org.rohith;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RuleEngine {
+public class RuleEngine
+{
 	
 	List<Rules<SKU, SKU>> rules;
+	OfferPrice offerPrice = new OfferPrice();
 
-    public RuleEngine() {
+    public RuleEngine() 
+    {
         rules = new ArrayList<>();
     }
 
-    public double rule(Promotion promotion) {
-    	OfferPrice offerPrice = new OfferPrice();
-    	promotion.getList();
-		/*
-		 * return rules.stream() .filter(rule -> rule.matches(sku)) .map(rule ->
-		 * rule.process(sku)) // .map(rule -> rule.applyPromo(sku, offerPrice))
-		 * .findFirst() .orElseThrow(() -> new
-		 * RuntimeException("No Matching rule found"));
-		 */
+    public double rule(Promotion promotion) 
+    {
+    	for(Rules<SKU, SKU> rule: rules)
+    	{
+    		offerPrice = rule.applyPromo(promotion, offerPrice);
+    	}
     	
-    	return 0.0;
+    	return offerPrice.getOfferPriceA() + offerPrice.getOfferPriceB() + 
+    			offerPrice.getOfferPriceC() + offerPrice.getOfferPriceD();
     }
 
 
-    public RuleEngine registerRule(Rules<SKU, SKU> rule) {
+    public RuleEngine registerRule(Rules<SKU, SKU> rule) 
+    {
         rules.add(rule);
         return this;
     }
