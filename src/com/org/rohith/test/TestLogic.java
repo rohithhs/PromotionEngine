@@ -56,7 +56,7 @@ public class TestLogic
          .registerRule(new RuleCAndD());	
 		 
 		 
-		 assertEquals(280.0, ruleEngine.rule(promotion), 0.01);
+		 assertEquals(280.0, ruleEngine.rule(promotion), 0.00);
 		
     }  
 	
@@ -97,7 +97,7 @@ public class TestLogic
          .registerRule(new RuleCAndD());	
 		 
 		 
-		 assertEquals(370.0, ruleEngine.rule(promotion), 0.01);
+		 assertEquals(370.0, ruleEngine.rule(promotion), 0.00);
 		
     }  
 	
@@ -135,8 +135,87 @@ public class TestLogic
          .registerRule(new RuleCAndD());	
 		 
 		 
-		 assertEquals(100.0, ruleEngine.rule(promotion), 0.01);
+		 assertEquals(100.0, ruleEngine.rule(promotion), 0.00);
 		
     }  
+	
+	@Test  
+    public void testRuleS4()
+	{  
+		SKU sku1 = new SKU();
+				
+		sku1.setName("@!#%$^*()");
+		sku1.setCount(1);
+		sku1.setPrice(50);
+		
+		List<SKU> skuList = new ArrayList<>();
+		skuList.add(sku1);
+		
+		Promotion promotion = new Promotion();
+		promotion.setList(skuList);
+		
+		RuleEngine ruleEngine = new RuleEngine();
+		 ruleEngine
+         .registerRule(new RuleA())
+         .registerRule(new RuleB())
+         .registerRule(new RuleCAndD());	
+		 
+		 
+		 assertEquals(0.0, ruleEngine.rule(promotion), 0.00);
+		
+    }  
+	
+	@Test  
+    public void testRuleS5()
+	{  
+		SKU sku1 = new SKU();
+				
+		sku1.setName("A");
+		sku1.setCount(0);
+		sku1.setPrice(0);
+		
+		List<SKU> skuList = new ArrayList<>();
+		skuList.add(sku1);
+		
+		Promotion promotion = new Promotion();
+		promotion.setList(skuList);
+		
+		RuleEngine ruleEngine = new RuleEngine();
+		 ruleEngine
+         .registerRule(new RuleA())
+         .registerRule(new RuleB())
+         .registerRule(new RuleCAndD());	
+		 
+		 
+		 assertEquals(0.0, ruleEngine.rule(promotion), 0.00);
+		
+    }  
+	
+	@Test  
+    public void testRuleS6()
+	{  
+		SKU sku1 = new SKU();
+				
+		sku1.setName("");
+		sku1.setCount(0);
+		sku1.setPrice(0);
+		
+		List<SKU> skuList = new ArrayList<>();
+		skuList.add(sku1);
+		
+		Promotion promotion = new Promotion();
+		promotion.setList(skuList);
+		
+		RuleEngine ruleEngine = new RuleEngine();
+		 ruleEngine
+         .registerRule(new RuleA())
+         .registerRule(new RuleB())
+         .registerRule(new RuleCAndD());	
+		 
+		 
+		 assertEquals(0.0, ruleEngine.rule(promotion), 0.00);
+		
+    }  
+
 
 }
